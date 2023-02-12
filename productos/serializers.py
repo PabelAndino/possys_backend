@@ -9,6 +9,12 @@ class CategoriaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CategoriaNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CategoriaModel
+        fields = ['nombre']
+
+
 class DisableCategoriaSerializer(serializers.ModelSerializer):
     estado = serializers.BooleanField(required=True)
 
@@ -21,6 +27,12 @@ class ProductosSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductosModel
         fields = '__all__'
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response['categoria'] = CategoriaNameSerializer(instance.categoria).data
+
+        return response
 
 
 class ProductosDisableSerializer(serializers.ModelSerializer):
