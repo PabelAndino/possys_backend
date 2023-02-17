@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from productos.models import CategoriaModel, ProductosModel
+from .models import CategoriaModel, ProductosModel, IngresoModel, IngresoDetallesModel, ProveedorModel
 
 
 class CategoriaSerializer(serializers.ModelSerializer):
@@ -40,4 +40,40 @@ class ProductosDisableSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CategoriaModel
+        fields = ['estado']
+
+
+class IngresoSerializer(serializers.ModelSerializer):
+    estado = serializers.CharField(required=True)
+
+    class Meta:
+        model = IngresoModel
+        fields = '__all__'
+
+
+class IngresoDisableSerializer(serializers.ModelSerializer):
+    estado = serializers.BooleanField(required=True)
+
+    class Meta:
+        model = IngresoModel
+        fields = ['estado']
+
+
+class IngresoDetallesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IngresoDetallesModel
+        fields = '__all__'
+
+
+class ProveedorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProveedorModel
+        fields = '__all__'
+
+
+class ProveedorDisableSerializer(serializers.ModelSerializer):
+    estado = serializers.BooleanField(required=True)
+
+    class Meta:
+        model = ProveedorModel
         fields = ['estado']

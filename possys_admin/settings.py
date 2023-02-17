@@ -37,9 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'drf_yasg',
-    'proveedor',
-    'productos',
-    'factura_ingreso',
+    'ingresos',
 
 ]
 

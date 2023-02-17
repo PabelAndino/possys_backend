@@ -18,7 +18,7 @@ from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions, routers
-from productos.views import CategoriaViewSet, ProductoViewSet
+from ingresos.views import CategoriaViewSet, ProductoViewSet, IngresoViewSet, ProveedorViewSet
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -36,6 +36,8 @@ schema_view = get_schema_view(
 router = routers.DefaultRouter()
 router.register("categoria", CategoriaViewSet, basename='Categoria')
 router.register("productos", ProductoViewSet, basename='Productos')
+router.register("ingresos", IngresoViewSet, basename='Ingresos')
+router.register("proveedor", ProveedorViewSet, basename='Proveedor')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
